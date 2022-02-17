@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.widget.doAfterTextChanged
 import com.criticalgnome.materialyoudemo.databinding.ActivityMainBinding
 import com.google.android.material.snackbar.Snackbar
 
@@ -30,8 +31,21 @@ class MainActivity : AppCompatActivity() {
                     "laoreet augue id, feugiat bibendum dolor. Curabitur porttitor, ligula in " +
                     "efficitur egestas, purus nulla finibus sapien, eu faucibus augue dolor in eros."
 
+            val input1MaxLength = 10
             textInput1.hint = "Enter text"
+            textInput1.counterMaxLength = input1MaxLength
+            textInput1.isCounterEnabled = true
+            textInput1.editText?.doAfterTextChanged { editable ->
+                textInput1.error = if (editable?.length ?: 0 > input1MaxLength) "$input1MaxLength chars maximum" else null
+            }
+
+            val input2MaxLength = 20
             textInput2.hint = "Enter another text"
+            textInput2.counterMaxLength = input2MaxLength
+            textInput2.isCounterEnabled = true
+            textInput2.editText?.doAfterTextChanged { editable ->
+                textInput2.error = if (editable?.length ?: 0 > input2MaxLength) "$input2MaxLength chars maximum" else null
+            }
 
             switch1Label.text = "First option"
             switch2Label.text = "Second option"
