@@ -66,7 +66,7 @@ class MainActivity : AppCompatActivity() {
             button2.setOnClickListener {
                 Snackbar
                     .make(binding.root, "This is a sample text", Snackbar.LENGTH_INDEFINITE)
-                    .setAction(android.R.string.ok) {}
+                    .setAction(android.R.string.ok, null)
                     .show()
             }
         }
