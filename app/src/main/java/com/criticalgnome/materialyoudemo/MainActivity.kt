@@ -1,6 +1,5 @@
 package com.criticalgnome.materialyoudemo
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -13,59 +12,48 @@ class MainActivity : AppCompatActivity() {
     private var _binding: ActivityMainBinding? = null
     private val binding get() = _binding!!
 
-    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         _binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         with(binding) {
-            cardHeader.text = "Page header"
-            cardText.text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam " +
-                    "facilisis felis eu tincidunt imperdiet. Fusce finibus lacus nibh, id congue " +
-                    "orci mattis vitae. Integer sit amet convallis lectus. Nunc gravida fermentum " +
-                    "lorem vel suscipit. Quisque eget ipsum finibus, iaculis purus molestie, " +
-                    "tristique mauris. Proin interdum consectetur bibendum. Morbi dictum diam " +
-                    "eget mauris consectetur pellentesque. Nunc congue tempus lobortis. Donec " +
-                    "sagittis enim egestas eros rutrum elementum. Praesent felis sem, euismod " +
-                    "laoreet augue id, feugiat bibendum dolor. Curabitur porttitor, ligula in " +
-                    "efficitur egestas, purus nulla finibus sapien, eu faucibus augue dolor in eros."
+            cardHeader.setText(R.string.main_page_header)
+            cardText.setText(R.string.lorem_ipsum)
 
             val input1MaxLength = 10
-            textInput1.hint = "Enter text"
+            textInput1.setHint(R.string.enter_text)
             textInput1.counterMaxLength = input1MaxLength
             textInput1.isCounterEnabled = true
             textInput1.editText?.doAfterTextChanged { editable ->
-                textInput1.error = if (editable?.length ?: 0 > input1MaxLength) "$input1MaxLength chars maximum" else null
+                textInput1.error = if (editable?.length ?: 0 > input1MaxLength) String.format(getString(R.string.length_error), input1MaxLength) else null
             }
 
             val input2MaxLength = 20
-            textInput2.hint = "Enter another text"
+            textInput2.setHint(R.string.enter_another_text)
             textInput2.counterMaxLength = input2MaxLength
             textInput2.isCounterEnabled = true
             textInput2.editText?.doAfterTextChanged { editable ->
-                textInput2.error = if (editable?.length ?: 0 > input2MaxLength) "$input2MaxLength chars maximum" else null
+                textInput2.error = if (editable?.length ?: 0 > input2MaxLength) String.format(getString(R.string.length_error), input1MaxLength) else null
             }
 
-            switch1Label.text = "First option"
-            switch2Label.text = "Second option"
+            switch1Label.setText(R.string.first_option)
+            switch2Label.setText(R.string.second_option)
 
-            button1.text = "Save changes"
+            button1.text = getString(R.string.save_changes)
             button1.setOnClickListener {
                 AlertDialog.Builder(this@MainActivity)
-                    .setTitle("Title")
-                    .setMessage("Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam " +
-                            "facilisis felis eu tincidunt imperdiet. Fusce finibus lacus nibh, id " +
-                            "congue orci mattis vitae. Integer sit amet convallis lectus.")
+                    .setTitle(R.string.dialog_title)
+                    .setMessage(R.string.lorem_ipsum_short)
                     .setPositiveButton(android.R.string.ok, null)
                     .setNegativeButton(android.R.string.cancel, null)
                     .show()
             }
 
-            button2.text = "Cancel"
+            button2.text = getString(android.R.string.cancel)
             button2.setOnClickListener {
                 Snackbar
-                    .make(binding.root, "This is a sample text", Snackbar.LENGTH_INDEFINITE)
+                    .make(binding.root, getString(R.string.sample_text), Snackbar.LENGTH_INDEFINITE)
                     .setAction(android.R.string.ok, null)
                     .show()
             }
