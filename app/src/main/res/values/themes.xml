@@ -32,4 +32,28 @@
         <item name="colorSurfaceInverse">@color/md_theme_light_inverseSurface</item>
         <item name="colorPrimaryInverse">@color/md_theme_light_primaryInverse</item>
     </style>
+
+    <style name="Headline1" parent="TextAppearance.MaterialComponents.Headline1">
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+    </style>
+
+    <style name="Headline2" parent="TextAppearance.MaterialComponents.Headline2">
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+    </style>
+
+    <style name="Headline3" parent="TextAppearance.MaterialComponents.Headline3">
+        <item name="android:textColor">@color/md_theme_light_primary</item>
+    </style>
+
+    <style name="Headline4" parent="TextAppearance.MaterialComponents.Headline4">
+        <item name="android:textColor">@color/md_theme_light_secondary</item>
+    </style>
+
+    <style name="Headline5" parent="TextAppearance.MaterialComponents.Headline5">
+        <item name="android:textColor">@color/md_theme_light_secondary</item>
+    </style>
+
+    <style name="Headline6" parent="TextAppearance.MaterialComponents.Headline6">
+        <item name="android:textColor">@color/md_theme_light_secondary</item>
+    </style>
 </resources>
