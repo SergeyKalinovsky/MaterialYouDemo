@@ -1,6 +1,7 @@
 package com.criticalgnome.materialyoudemo
 
 import android.os.Bundle
+import android.text.Editable
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.widget.doAfterTextChanged
@@ -26,7 +27,7 @@ class MainActivity : AppCompatActivity() {
             textInput1.counterMaxLength = input1MaxLength
             textInput1.isCounterEnabled = true
             textInput1.editText?.doAfterTextChanged { editable ->
-                textInput1.error = if (editable?.length ?: 0 > input1MaxLength) String.format(getString(R.string.length_error), input1MaxLength) else null
+                textInput1.error = editable.validate(input1MaxLength)
             }
 
             val input2MaxLength = 20
@@ -34,7 +35,7 @@ class MainActivity : AppCompatActivity() {
             textInput2.counterMaxLength = input2MaxLength
             textInput2.isCounterEnabled = true
             textInput2.editText?.doAfterTextChanged { editable ->
-                textInput2.error = if (editable?.length ?: 0 > input2MaxLength) String.format(getString(R.string.length_error), input1MaxLength) else null
+                textInput2.error = editable.validate(input2MaxLength)
             }
 
             switch1Label.setText(R.string.first_option)
@@ -59,4 +60,6 @@ class MainActivity : AppCompatActivity() {
             }
         }
     }
+
+    private fun Editable?.validate(max: Int): String? = if (this?.length ?: Int.MIN_VALUE > max) { String.format(getString(R.string.length_error), max) } else null
 }
